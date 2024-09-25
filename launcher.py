@@ -145,8 +145,8 @@ class AppLauncher(tk.Tk):
 
 	# Check if the focus is lost to an external window, and close the launcher
 	def check_focus(self, event):
-		# Check if focus was lost to an external window
-		if self.focus_get() is None:
+		# Only quit if the focus is lost for reasons other than an active dialog
+		if self.focus_get() is None and not self.winfo_exists():
 			self.quit()
 
 	# Launch the app from filter input or list selection
